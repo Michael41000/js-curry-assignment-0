@@ -47,7 +47,7 @@ const constructCarts =
           cart(customer.name, ...entries(customer.shoppingList).reduce(
             // Take an item and an item count and turn it into an array 
             // that has the item repeated item count times
-            (itemList, item) => itemList.concat(itemRepeater(item[0])(item[1])), [])
+            (itemList, item) => [...itemList, ...itemRepeater(item[0])(item[1])], [])
           )
       )
     
