@@ -28,9 +28,10 @@ const cart =
  */
 const itemRepeater =
   itemName =>
-    count => {
-      // TODO
-    }
+    count => 
+      count === 0 ? [] : [itemName].concat(itemRepeater(itemName)(count - 1))
+      // Add the name of the item to the array, merge it with the other arrays, 
+      // and keep going through the function (decrementing count), until count is 0.
 
 /**
  * should return an array of carts with each given customer's shopping list
@@ -38,9 +39,18 @@ const itemRepeater =
  */
 const constructCarts =
   listings =>
-    customers => {
-      // TODO
-    }
+    customers => 
+      // Map each customer element, to a cart element
+      customers.map(
+        (customer) => 
+          // Create a cart with each customer name and an array of the items
+          cart(customer.name, ...entries(customer.shoppingList).reduce(
+            // Take an item and an item count and turn it into an array 
+            // that has the item repeated item count times
+            (itemList, item) => itemList.concat(itemRepeater(item[0])(item[1])), [])
+          )
+      )
+    
 
 module.exports = {
   listing,
