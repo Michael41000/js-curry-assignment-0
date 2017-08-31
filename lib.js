@@ -29,7 +29,7 @@ const cart =
 const itemRepeater =
   itemName =>
     count => 
-      count === 0 ? [] : [itemName].concat(itemRepeater(itemName)(count - 1))
+      count === 0 ? [] : [itemName, ...itemRepeater(itemName)(count - 1)]
       // Add the name of the item to the array, merge it with the other arrays, 
       // and keep going through the function (decrementing count), until count is 0.
 
